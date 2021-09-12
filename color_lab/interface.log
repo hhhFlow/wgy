@@ -1,0 +1,93 @@
+
+
+// 接口1
+// 描述: 客户端从服务器请求一个唯一id标识
+// 
+rq: GET /init?mode=1
+rs:
+{"code":0,"data":[{"uniq_id":15}]}
+
+
+// 接口2
+// 描述: 客户端从服务器请求页面背景色, 以及一个目标颜色
+rq: GET /step2?uniq_id=222
+rs: 
+
+
+// 接口3
+// 描述： 客户端从服务器请求页面背景色，以及所有颜色
+
+
+
+// 接口4
+// 描述： 客户端从服务器请求页面背景色，以及一个测验颜色
+
+
+
+
+
+// 用户操作
+redis:
+  hash:
+  key: user:operator:[uid]
+  filed: init
+  value:
+    {
+      "time_ms":
+    }
+
+  filed: ready_[mode]
+  value: 
+    {
+      "time_ms":
+    }
+  filed: show_target_color_[mode]
+  value:
+    {
+      "time_ms":
+      "rgb":
+      "class":
+    }
+  filed: show_rand_color_set_[mode]
+  value:
+    {
+      "time_ms":
+    }
+  filed: select_color_[mode]
+  value:
+    {
+      "time_ms":
+      "rgb":
+      "class":
+    }
+  field: show_rand_color_[mode]
+  value:
+    {
+      "time_ms":
+      "rgb":
+      "class":
+    }
+  field: confirm_color_[mode]
+  value:
+    {
+      "time_ms":
+      "rgb":
+    }
+
+// user_id 生成
+redis:
+  string:
+  key: max:uniq:id
+
+// 用户所在的模式
+redis:
+  string:
+  key: user:mode:[uid]
+  value: 0/1
+
+// 两种模式完成数
+redis:
+  string:
+  key: fini:num:[mode]
+
+//  
